@@ -12,9 +12,9 @@
   "devDependencies": { "tsup": "^8.0.0", "typescript": "^5.0.0" },
   "keywords": ["date-range", "date", "range", "overlap", "interval", "calendar", "scheduling"],
   "license": "MIT",
-  "repository": { "type": "git", "url": "git+https://github.com/philiprehberger/ts-date-range-ts.git" },
-  "homepage": "https://github.com/philiprehberger/ts-date-range-ts#readme",
-  "bugs": { "url": "https://github.com/philiprehberger/ts-date-range-ts/issues" },
+  "repository": { "type": "git", "url": "git+https://github.com/philiprehberger/ts-date-range.git" },
+  "homepage": "https://github.com/philiprehberger/ts-date-range#readme",
+  "bugs": { "url": "https://github.com/philiprehberger/ts-date-range/issues" },
   "author": "Philip Rehberger",
   "engines": { "node": ">=18.0.0" },
   "sideEffects": false
