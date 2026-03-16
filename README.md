@@ -1,21 +1,21 @@
-# @philiprehberger/date-range-ts
+# @philiprehberger/ts-date-range
 
-[![CI](https://github.com/philiprehberger/date-range-ts/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/date-range-ts/actions/workflows/ci.yml)
-[![npm version](https://img.shields.io/npm/v/@philiprehberger/date-range-ts.svg)](https://www.npmjs.com/package/@philiprehberger/date-range-ts)
-[![License](https://img.shields.io/github/license/philiprehberger/date-range-ts)](LICENSE)
+[![CI](https://github.com/philiprehberger/ts-date-range/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/ts-date-range/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/@philiprehberger/ts-date-range.svg)](https://www.npmjs.com/package/@philiprehberger/ts-date-range)
+[![License](https://img.shields.io/github/license/philiprehberger/ts-date-range)](LICENSE)
 
 Date range operations — overlap, gap, iterate, merge.
 
 ## Installation
 
 ```bash
-npm install @philiprehberger/date-range-ts
+npm install @philiprehberger/ts-date-range
 ```
 
 ## Usage
 
 ```ts
-import { dateRange, mergeRanges } from '@philiprehberger/date-range-ts';
+import { dateRange, mergeRanges } from '@philiprehberger/ts-date-range';
 
 const booking = dateRange('2026-03-15', '2026-03-20');
 const request = dateRange('2026-03-18', '2026-03-25');
