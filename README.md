@@ -1,6 +1,6 @@
 # @philiprehberger/ts-date-range
 
-[![CI](https://github.com/philiprehberger/ts-date-range/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/ts-date-range/actions/workflows/ci.yml)
+[![CI](https://github.com/philiprehberger/ts-date-range/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/ts-date-range/actions/workflows/publish.yml)
 [![npm version](https://img.shields.io/npm/v/@philiprehberger/ts-date-range.svg)](https://www.npmjs.com/package/@philiprehberger/ts-date-range)
 [![License](https://img.shields.io/github/license/philiprehberger/ts-date-range)](LICENSE)
 
@@ -43,6 +43,15 @@ mergeRanges([range1, range2, range3]);  // merged, non-overlapping
 | `.splitBy(step)` | Split into sub-ranges |
 | `.durationIn(unit)` | Duration as number |
 | `mergeRanges(ranges[])` | Merge all overlapping |
+
+
+## Development
+
+```bash
+npm install
+npm run build
+npm test
+```
 
 ## License
 
