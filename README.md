@@ -1,6 +1,6 @@
 # @philiprehberger/date-range-ts
 
-[![CI](https://github.com/philiprehberger/ts-date-range/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/ts-date-range/actions/workflows/publish.yml)
+[![CI](https://github.com/philiprehberger/ts-date-range/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/ts-date-range/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/@philiprehberger/date-range-ts.svg)](https://www.npmjs.com/package/@philiprehberger/date-range-ts)
 [![License](https://img.shields.io/github/license/philiprehberger/ts-date-range)](LICENSE)
 
