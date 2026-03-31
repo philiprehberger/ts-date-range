@@ -1,9 +1,8 @@
 # @philiprehberger/date-range-ts
 
-[![CI](https://github.com/philiprehberger/ts-date-range/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/ts-date-range/actions/workflows/ci.yml)
+[![CI](https://github.com/philiprehberger/date-range-ts/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/date-range-ts/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/@philiprehberger/date-range-ts.svg)](https://www.npmjs.com/package/@philiprehberger/date-range-ts)
-[![License](https://img.shields.io/github/license/philiprehberger/ts-date-range)](LICENSE)
-[![Sponsor](https://img.shields.io/badge/sponsor-GitHub%20Sponsors-ec6cb9)](https://github.com/sponsors/philiprehberger)
+[![Last updated](https://img.shields.io/github/last-commit/philiprehberger/date-range-ts)](https://github.com/philiprehberger/date-range-ts/commits/main)
 
 Date range operations — overlap, gap, iterate, merge
 
@@ -45,7 +44,6 @@ mergeRanges([range1, range2, range3]);  // merged, non-overlapping
 | `.durationIn(unit)` | Duration as number |
 | `mergeRanges(ranges[])` | Merge all overlapping |
 
-
 ## Development
 
 ```bash
@@ -54,6 +52,24 @@ npm run build
 npm test
 ```
 
+## Support
+
+If you find this project useful:
+
+⭐ [Star the repo](https://github.com/philiprehberger/date-range-ts)
+
+🐛 [Report issues](https://github.com/philiprehberger/date-range-ts/issues?q=is%3Aissue+is%3Aopen+label%3Abug)
+
+💡 [Suggest features](https://github.com/philiprehberger/date-range-ts/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)
+
+❤️ [Sponsor development](https://github.com/sponsors/philiprehberger)
+
+🌐 [All Open Source Projects](https://philiprehberger.com/open-source-packages)
+
+💻 [GitHub Profile](https://github.com/philiprehberger)
+
+🔗 [LinkedIn Profile](https://www.linkedin.com/in/philiprehberger)
+
 ## License
 
-MIT
+[MIT](LICENSE)
