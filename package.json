@@ -1,6 +1,6 @@
 {
   "name": "@philiprehberger/date-range-ts",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Date range operations — overlap, gap, iterate, merge",
   "type": "module",
   "main": "./dist/index.cjs",

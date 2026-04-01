@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0
+
+- Add recurring date ranges with configurable patterns
+- Add blackout period exclusion for date iteration
+- Add business day counting and iteration (weekday-only)
+- Add range shifting with shift(duration)
+
 ## 0.1.4
 
 - Standardize README to 3-badge format with emoji Support section

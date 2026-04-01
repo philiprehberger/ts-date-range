@@ -1,4 +1,4 @@
-import type { DateInput, IterateStep, DateRangeJSON } from './types';
+import type { DateInput, IterateStep, DateRangeJSON, RecurringPattern, ShiftDuration } from './types';
 
 function toDate(input: DateInput): Date {
   const d = input instanceof Date ? input : new Date(input);
@@ -8,6 +8,29 @@ function toDate(input: DateInput): Date {
 
 const MS_DAY = 86_400_000;
 const MS_WEEK = 604_800_000;
+
+function isWeekday(date: Date): boolean {
+  const day = date.getDay();
+  return day !== 0 && day !== 6;
+}
+
+function isSameDay(a: Date, b: Date): boolean {
+  return (
+    a.getFullYear() === b.getFullYear() &&
+    a.getMonth() === b.getMonth() &&
+    a.getDate() === b.getDate()
+  );
+}
+
+function patternToStep(pattern: RecurringPattern): IterateStep {
+  if (typeof pattern === 'object') return pattern.every;
+  switch (pattern) {
+    case 'daily': return 'day';
+    case 'weekly': return 'week';
+    case 'monthly': return 'month';
+    case 'yearly': return 'year';
+  }
+}
 
 function addStep(date: Date, step: IterateStep): Date {
   if (typeof step === 'number') return new Date(date.getTime() + step);
@@ -124,6 +147,97 @@ export class DateRange {
       case 'days': return ms / MS_DAY;
       case 'weeks': return ms / MS_WEEK;
     }
+  }
+
+  recurring(pattern: RecurringPattern, limit: number): DateRange[] {
+    const step = patternToStep(pattern);
+    const rangeDuration = this.duration;
+    const ranges: DateRange[] = [];
+    let currentStart = new Date(this.start);
+
+    for (let i = 0; i < limit; i++) {
+      const currentEnd = new Date(currentStart.getTime() + rangeDuration);
+      ranges.push(new DateRange(currentStart, currentEnd));
+      currentStart = addStep(currentStart, step);
+    }
+
+    return ranges;
+  }
+
+  excludeDates(dates: DateInput[]): { iterate: (step: IterateStep) => Generator<Date> } {
+    const excludedDates = dates.map((d) => toDate(d));
+    const range = this;
+    return {
+      *iterate(step: IterateStep): Generator<Date> {
+        for (const date of range.iterate(step)) {
+          if (!excludedDates.some((ex) => isSameDay(ex, date))) {
+            yield date;
+          }
+        }
+      },
+    };
+  }
+
+  excludeRanges(ranges: DateRange[]): { iterate: (step: IterateStep) => Generator<Date> } {
+    const parentRange = this;
+    return {
+      *iterate(step: IterateStep): Generator<Date> {
+        for (const date of parentRange.iterate(step)) {
+          const excluded = ranges.some((r) => date >= r.start && date <= r.end);
+          if (!excluded) {
+            yield date;
+          }
+        }
+      },
+    };
+  }
+
+  businessDays(): number {
+    let count = 0;
+    let current = new Date(this.start);
+    while (current <= this.end) {
+      if (isWeekday(current)) count++;
+      current = new Date(current.getTime() + MS_DAY);
+    }
+    return count;
+  }
+
+  *iterateBusinessDays(): Generator<Date> {
+    let current = new Date(this.start);
+    while (current <= this.end) {
+      if (isWeekday(current)) {
+        yield new Date(current);
+      }
+      current = new Date(current.getTime() + MS_DAY);
+    }
+  }
+
+  shift(duration: ShiftDuration): DateRange {
+    let start = new Date(this.start);
+    let end = new Date(this.end);
+
+    if (duration.ms) {
+      start = new Date(start.getTime() + duration.ms);
+      end = new Date(end.getTime() + duration.ms);
+    }
+    if (duration.days) {
+      start = new Date(start.getTime() + duration.days * MS_DAY);
+      end = new Date(end.getTime() + duration.days * MS_DAY);
+    }
+    if (duration.weeks) {
+      start = new Date(start.getTime() + duration.weeks * MS_WEEK);
+      end = new Date(end.getTime() + duration.weeks * MS_WEEK);
+    }
+    if (duration.months) {
+      start.setMonth(start.getMonth() + duration.months);
+      end.setMonth(end.getMonth() + duration.months);
+    }
+    if (duration.years) {
+      start.setFullYear(start.getFullYear() + duration.years);
+      end.setFullYear(end.getFullYear() + duration.years);
+    }
+
+    return new DateRange(start, end);
   }
 
   toString(): string {
