@@ -4,6 +4,8 @@
 [![npm version](https://img.shields.io/npm/v/@philiprehberger/date-range-ts.svg)](https://www.npmjs.com/package/@philiprehberger/date-range-ts)
 [![Last updated](https://img.shields.io/github/last-commit/philiprehberger/date-range-ts)](https://github.com/philiprehberger/date-range-ts/commits/main)
 
+![@philiprehberger/date-range-ts](https://raw.githubusercontent.com/philiprehberger/date-range-ts/main/package-card.webp)
+
 Date range operations — overlap, gap, iterate, merge, recurring, blackout, business days, shift
 
 ## Installation
@@ -79,6 +81,26 @@ for (const day of week.iterateBusinessDays()) {
 }
 ```
 
+### Clamp to Window
+
+Trim a range to fit within a bounding window:
+
+```ts
+const reportPeriod = dateRange('2026-03-01', '2026-03-31');
+const fiscalQuarter = dateRange('2026-03-15', '2026-06-15');
+
+const visible = reportPeriod.clamp(fiscalQuarter);
+// Mar 15 - Mar 31
+
+// Object-literal bounds also work
+const trimmed = reportPeriod.clamp({ start: '2026-03-10', end: '2026-03-20' });
+// Mar 10 - Mar 20
+
+// Disjoint ranges return null
+const disjoint = reportPeriod.clamp(dateRange('2026-05-01', '2026-05-10'));
+// null
+```
+
 ### Range Shifting
 
 Move an entire range forward or backward:
@@ -104,6 +126,7 @@ const nextMonth = event.shift({ months: 1 });
 | `.overlaps(other)` | Check if ranges overlap |
 | `.contains(date)` / `.containsRange(other)` | Containment checks |
 | `.intersection(other)` | Overlapping portion |
+| `clamp(bounds)` | Trim range to the bounding window; returns `null` if disjoint |
 | `.union(other)` | Merge two ranges |
 | `.gap(other)` | Gap between ranges |
 | `.iterate(step)` | Generator yielding dates |

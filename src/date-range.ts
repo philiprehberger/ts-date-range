@@ -101,6 +101,11 @@ export class DateRange {
     );
   }
 
+  clamp(bounds: DateRange | { start: DateInput; end: DateInput }): DateRange | null {
+    const bRange = bounds instanceof DateRange ? bounds : new DateRange(bounds.start, bounds.end);
+    return this.intersection(bRange);
+  }
+
   union(other: DateRange): DateRange {
     if (!this.overlaps(other) && !this.isAdjacent(other)) {
       throw new Error('Cannot merge non-overlapping, non-adjacent ranges');

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0
+
+- Add `DateRange#clamp(bounds)` for trimming a range to a bounding window; returns `null` when the ranges are disjoint
+- CI: publish workflow now runs `npm test` before publishing
+
 ## 0.2.0
 
 - Add recurring date ranges with configurable patterns
